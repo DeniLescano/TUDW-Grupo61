@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Trabajo Práctico N°1
 
 ## Introducción al Desarrollo Web  
@@ -34,3 +35,10 @@ La entrega del primer avance deberá:
 - Ser cargado el enlace al repositorio GitHub o GitLab del proyecto en la sección del Campus Virtual correspondiente. El repositorio deberá estar disponible para los profesores del curso.
 - Entregarse antes de la fecha límite informada en el campus.
 ---
+=======
+Grupo 61
+Estudiantes:
+Acosta Francisco Javier
+lescano Denise
+Medina Esteban
+>>>>>>> be5191fe5cca2a5dec5efc36c5995d704cc66ffe
