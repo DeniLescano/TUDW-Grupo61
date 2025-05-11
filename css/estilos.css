@@ -1,20 +1,6 @@
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f8f9fa;
-}
-
-header, footer {
-    background-color: #343a40;
-    color: white;
-    padding: 1rem 0;
-    text-align: center;
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
+.nav-link.active {
+    color: #0d6efd !important;  /* Azul Bootstrap */
+    font-weight: bold;
+    border-bottom: 3px solid #0d6efd;
+  }
+  
