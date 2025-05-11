@@ -1,32 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Inicio - Mi Sitio Web</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/estilos.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inicio | Grupo 61</title>
+  <link href="css/estilos.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 
-    <header>
-        <h1>Escuela Secundaria N°10 "Estrella Federal</h1>
-        <nav class="nav justify-content-center">
-            <a class="nav-link" href="index.html">Inicio</a>
-            <a class="nav-link" href="institucional.html">Institución</a>
-            <a class="nav-link" href="contacto.html">Contacto</a>
-        </nav>
-    </header>
+<div id="header"></div>
 
-    <main class="container mt-4">
-        <h2>Bienvenidos</h2>
-        <p>Este es el sitio de inicio de nuestra aplicación web. Aquí puedes encontrar información sobre la institución y ponerte en contacto con nosotros.</p>
-    </main>
+<main class="container mt-4">
+  <section class="text-center mb-5">
+    <h2>¡Hacé que tu fiesta sea inolvidable!</h2>
+    <p class="lead">En <strong>Grupo 61</strong> nos dedicamos a conectar a las familias con los mejores salones y servicios para cumpleaños infantiles. Con nosotros, organizar una fiesta perfecta es más fácil, rápido y seguro.</p>
+    <img src="img/salon1.jpg" class="img-fluid rounded shadow-sm my-3" alt="Salón destacado">
+  </section>
 
-    <footer class="mt-5">
-        <p>&copy; 2025 JED Sistemas Informativos - Todos los derechos reservados</p>
-    </footer>
+  <section class="mb-5">
+    <h3>¿Por qué elegirnos?</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+      <div class="col">
+        <div class="card h-100 border-primary">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Variedad de salones</h5>
+            <p class="card-text">Contamos con una amplia red de salones temáticos en distintas zonas, adaptados a todas las edades y estilos de fiesta.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-success">
+          <div class="card-body">
+            <h5 class="card-title text-success">Servicios complementarios</h5>
+            <p class="card-text">Desde animación hasta catering, podés armar tu fiesta con todos los detalles que la hagan única.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-warning">
+          <div class="card-body">
+            <h5 class="card-title text-warning">Gestión simple y segura</h5>
+            <p class="card-text">Explorá, filtrá y reservá todo desde nuestra plataforma. Guardamos tus preferencias y presupuestos de forma práctica.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <section class="mb-5 text-center">
+    <h3>Comenzá hoy mismo</h3>
+    <p>Ingresá al <a href="catalogo.html" class="fw-bold">Catálogo de Salones</a> y descubrí el lugar ideal para tu próxima fiesta.</p>
+    <a href="catalogo.html" class="btn btn-primary btn-lg mt-2">Ver salones disponibles</a>
+  </section>
+</main>
+
+<div id="footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/incluir.js"></script>
 </body>
 </html>
