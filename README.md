@@ -31,13 +31,9 @@ Tp 01
 - Establezca un estilo para dicha estructura web.
 
 Tp 02
-  Son objetivos de esta entrega que el estudiante:
-  -Ponga en práctica todos los conocimientos adquiridos sobre elementos semánticos de HTML,
-  implementación de diseños con CSS, RWD y frameworks CSS.
-  -Adapte el sitio web a múltiples tamaños de pantalla mediante técnicas de diseño web adaptativo
-  (RWD).
-  -Integre un framework CSS (Bootstrap) para facilitar el diseño, la maquetación responsiva y el uso de
-  componentes reutilizables.
+- Ponga en práctica todos los conocimientos adquiridos sobre elementos semánticos de HTML, implementación de diseños con CSS, RWD y frameworks CSS.
+-Adapte el sitio web a múltiples tamaños de pantalla mediante técnicas de diseño web adaptativo (RWD).
+-Integre un framework CSS (Bootstrap) para facilitar el diseño, la maquetación responsiva y el uso de componentes reutilizables.
 
 
 ### Aclaraciones sobre el trabajo
