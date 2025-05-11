@@ -25,12 +25,12 @@ Realizamos reentrega del Tp 01 sumando las consignas del tp 02
 - **2025**
 
 ### OBJETIVOS
-  Tp 01
+Tp 01
 - Ponga en práctica todos los conocimientos adquiridos sobre HTML y CSS.
 - Defina la estructura de la aplicación web que servirá como base para la realización del Trabajo Final Integrador. Esta estructura deberá tener como mínimo las páginas de: inicio o portada, información institucional y de contacto.
 - Establezca un estilo para dicha estructura web.
 
-  Tp 02
+Tp 02
   Son objetivos de esta entrega que el estudiante:
   -Ponga en práctica todos los conocimientos adquiridos sobre elementos semánticos de HTML,
   implementación de diseños con CSS, RWD y frameworks CSS.
