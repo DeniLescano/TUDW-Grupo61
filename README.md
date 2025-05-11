@@ -39,22 +39,18 @@ Tp 02
   -Integre un framework CSS (Bootstrap) para facilitar el diseño, la maquetación responsiva y el uso de
   componentes reutilizables.
 
-### CONDICIONES DE ENTREGA
-La entrega del primer avance deberá:
-- Entregarse en grupo, indicando apellido y nombre de los integrantes del mismo.
-- Ser cargado el enlace al repositorio GitHub o GitLab del proyecto en la sección del Campus Virtual correspondiente. El repositorio deberá estar disponible para los profesores del curso.
-- Entregarse antes de la fecha límite informada en el campus.
 
-  La segunda entrega deberá:
-  -Entregarse en grupo, indicando apellido y nombre de los integrantes del mismo.
-  -Ser cargado el enlace al repositorio GitHub o GitLab del proyecto en la sección del Campus Virtual
-  correspondiente. El repositorio deberá estar disponible para los profesores del curso.
-  -Entregarse antes de la fecha límite informada en el campus
----
+### Aclaraciones sobre el trabajo
+Se decidió poner el encabezado y el pie de página por separado para una mejor actualización del texto, ya que al ser html deberiamos copiar y pegar cada vez que cambiemos el encabezado y el pie de página. 
+
+Página de estilos
+se utiliza una página de estilos personalizada para algunos elementos, pero ademas se utiliza algunas funcionalidades de 
+bootstrap. 
+
 =======
 Grupo 61
 Estudiantes:
 Acosta Francisco Javier
-lescano Denise
+Lescano Denise
 Medina Esteban
 >>>>>>> be5191fe5cca2a5dec5efc36c5995d704cc66ffe
