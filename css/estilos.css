@@ -507,4 +507,34 @@ h3 {
     padding: 10px 24px;
     font-size: 0.9rem;
   } 
-  } 
+  }
+
+  .whatsapp-fixed {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.whatsapp-link {
+  display: block;
+  background-color: #25D366; /* Color verde de WhatsApp */
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.whatsapp-link:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-link img {
+  width: 40px;
+  height: 40px;
+}
