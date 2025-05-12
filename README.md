@@ -36,14 +36,16 @@ Tp 02
 -Integre un framework CSS (Bootstrap) para facilitar el diseño, la maquetación responsiva y el uso de componentes reutilizables.
 
 
-### Aclaraciones sobre el trabajo
-#  Encabezado y pie de página
+#Aclaraciones sobre el trabajo.
+
+*Encabezado y pie de página*
 Se decidió poner el encabezado y el pie de página por separado para una mejor actualización del texto, ya que al ser html deberiamos copiar y pegar cada vez que cambiemos el encabezado y el pie de página. 
 
-# Página de estilos
+*Página de estilos*
 se utiliza una página de estilos personalizada para algunos elementos, pero ademas se utiliza algunas funcionalidades de 
 bootstrap. 
-# Empresas: 
+
+*Empresas:* 
 Empresa que desarrolla la página: IDW SA-Grupo 61.
 
 Empresa que ofrece el servicio de salones: Exclusive Eventos.
