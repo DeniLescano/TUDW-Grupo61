@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Salones - Exclusive Salones</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container mb-4">
+        <h1>Administración de Salones de Eventos</h1>
+
+        <section class="form-section">
+            <h2>Formulario de Salón</h2>
+            <form id="salon-form">
+                <input type="hidden" id="salon-id">
+
+                <div class="form-group">
+                    <label for="nombre">Nombre del Salón:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ubicacion">Ubicación:</label>
+                    <input type="text" id="ubicacion" name="ubicacion" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="capacidad">Capacidad (personas):</label>
+                    <input type="number" id="capacidad" name="capacidad" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="precioPorDia">Precio por Día ($):</label>
+                    <input type="number" id="precioPorDia" name="precioPorDia" min="0" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">Nombre de Archivo de Imagen (ej: salon1.jpg):</label>
+                    <input type="text" id="imagen" name="imagen" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado" required>
+                        <option value="Disponible">Disponible</option>
+                        <option value="Reservado">Reservado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Servicios:</label>
+                    <div>
+                        <input type="checkbox" id="servicio-catering" name="servicios" value="catering">
+                        <label for="servicio-catering">Catering</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="servicio-decoracion" name="servicios" value="decoracion">
+                        <label for="servicio-decoracion">Decoración</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="servicio-sonido" name="servicios" value="sonido">
+                        <label for="servicio-sonido">Sonido</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="servicio-musica" name="servicios" value="musica">
+                        <label for="servicio-musica">Música</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="servicio-iluminacion" name="servicios" value="iluminacion">
+                        <label for="servicio-iluminacion">Iluminación</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="servicio-pileta" name="servicios" value="pileta">
+                        <label for="servicio-pileta">Pileta</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="servicio-jardines" name="servicios" value="jardines">
+                        <label for="servicio-jardines">Jardines</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contacto">Contacto (Email):</label>
+                    <input type="email" id="contacto" name="contacto" required>
+                </div>
+
+                <button type="submit" id="btn-submit-form">Guardar Salón</button>
+                <button type="button" id="btn-cancel-edit" style="display: none;">Cancelar Edición</button>
+            </form>
+        </section>
+
+        <section class="table-section">
+            <h2>Listado de Salones</h2>
+            <table id="salones-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Ubicación</th>
+                        <th>Capacidad</th>
+                        <th>Precio/Día</th>
+                        <th>Servicios</th>
+                        <th>Contacto</th>
+                        <th>Descripción</th>
+                        <th>Imagen</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/incluir.js"></script>
+    <script type="module" src="js/adminSalones.js"></script>
+    <script type="module" src="js/salonesData.js"></script>
+</body>
+</html>

@@ -17,3 +17,30 @@ document.addEventListener("DOMContentLoaded", function () {
     else if (path.includes("contacto")) document.getElementById("nav-contacto").classList.add("active");
     else if (path.includes("catalogo")) document.getElementById("nav-catalogo").classList.add("active");
   }
+
+ // js/incluir.js
+import { initializeLocalStorage } from './salonesData.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Incluir header y footer
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            if (headerPlaceholder) {
+                headerPlaceholder.innerHTML = data;
+            }
+        });
+
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            const footerPlaceholder = document.getElementById('footer-placeholder');
+            if (footerPlaceholder) {
+                footerPlaceholder.innerHTML = data;
+            }
+        });
+
+    // Inicializa LocalStorage al cargar la aplicación
+    initializeLocalStorage();
+});
