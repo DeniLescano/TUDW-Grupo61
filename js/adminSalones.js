@@ -15,40 +15,51 @@ const estadoSelect = document.getElementById('estado');
 
 // Función para renderizar la tabla de salones
 function renderSalonesTable() {
-    salonesTableBody.innerHTML = ''; // Limpia la tabla antes de renderizar
+    const salonesTableBody = document.querySelector('#salones-table tbody');
+    salonesTableBody.innerHTML = '';
+
     const salones = getSalones();
 
     if (salones.length === 0) {
-        salonesTableBody.innerHTML = '<tr><td colspan="10">No hay salones registrados.</td></tr>'; // Aumentar colspan
+        const row = salonesTableBody.insertRow();
+        row.innerHTML = `
+            <td colspan="9" class="text-center text-muted py-3">No hay salones registrados.</td>
+        `;
         return;
     }
 
     salones.forEach(salon => {
         const row = salonesTableBody.insertRow();
-        row.insertCell().textContent = salon.id;
-        row.insertCell().textContent = salon.nombre;
-        row.insertCell().textContent = salon.ubicacion;
-        row.insertCell().textContent = salon.capacidad;
-        row.insertCell().textContent = `$${salon.precioPorDia.toFixed(2)}`;
-        row.insertCell().textContent = salon.servicios.join(', ');
-        row.insertCell().textContent = salon.contacto;
-        row.insertCell().textContent = salon.descripcion.substring(0, 50) + '...'; // Mostrar una parte
-        row.insertCell().textContent = salon.imagen;
-        row.insertCell().textContent = salon.estado;
 
+        // Generar servicios como texto separado por comas
+        const serviciosText = salon.servicios ? salon.servicios.join(', ') : 'Ninguno';
 
-        const actionsCell = row.insertCell();
-        const editButton = document.createElement('button');
-        editButton.textContent = 'Editar';
-        editButton.classList.add('edit-btn');
-        editButton.addEventListener('click', () => editSalon(salon.id));
-        actionsCell.appendChild(editButton);
+        row.innerHTML = `
+            <td>${salon.id}</td>
+            <td>${salon.nombre}</td>
+            <td>${salon.ubicacion}</td>
+            <td>${salon.capacidad}</td>
+            <td>$${parseFloat(salon.precioPorDia).toFixed(2)}</td>
+            <td>${serviciosText}</td>
+            <td>${salon.contacto}</td>
+            <td>
+                <span class="badge ${salon.estado === 'Disponible' ? 'bg-success' : 'bg-danger'}">
+                    ${salon.estado}
+                </span>
+            </td>
+            <td>
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <button class="btn btn-warning btn-sm w-100 edit-btn">Editar</button>
+                    <button class="btn btn-danger btn-sm w-100 delete-btn">Eliminar</button>
+                </div>
+            </td>
+        `;
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Eliminar';
-        deleteButton.classList.add('delete-btn');
-        deleteButton.addEventListener('click', () => confirmDeleteSalon(salon.id, salon.nombre));
-        actionsCell.appendChild(deleteButton);
+        // Evento Editar
+        row.querySelector('.edit-btn').addEventListener('click', () => editSalon(salon.id));
+
+        // Evento Eliminar
+        row.querySelector('.delete-btn').addEventListener('click', () => confirmDeleteSalon(salon.id, salon.nombre));
     });
 }
 
