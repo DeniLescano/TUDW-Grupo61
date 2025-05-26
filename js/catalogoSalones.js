@@ -1,4 +1,3 @@
-// js/catalogoSalones.js
 import { getSalones } from './salonesData.js';
 
 const salonesContainer = document.getElementById('salones-container');
@@ -22,7 +21,7 @@ function renderCatalogoSalones() {
         const cardArticle = document.createElement('article');
         cardArticle.classList.add('card', 'h-100');
 
-        // Contenido de la tarjeta (imagen, cuerpo y footer)
+        // Contenido tarjeta (imagen, cuerpo y footer)
         cardArticle.innerHTML = `
             <img src="img/${salon.imagen}" class="card-img-top" alt="Imagen del Salón ${salon.nombre}">
             <div class="card-body">
@@ -42,9 +41,7 @@ function renderCatalogoSalones() {
                     class="btn btn-custom">Ver imágenes</a>
             </div>
         `;
-        // Nota: El enlace "Ver imágenes" apunta a la misma imagen por simplicidad.
-        // Si tienes galerías por salón, aquí podrías enlazar a una página de detalle.
-
+        
         colDiv.appendChild(cardArticle);
         salonesContainer.appendChild(colDiv);
     });

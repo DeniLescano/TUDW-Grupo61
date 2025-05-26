@@ -1,4 +1,3 @@
-// js/adminSalones.js
 import { getSalones, addSalon, updateSalon, deleteSalon, getSalonById } from './salonesData.js';
 
 const salonForm = document.getElementById('salon-form');
@@ -7,25 +6,25 @@ const salonIdInput = document.getElementById('salon-id');
 const btnSubmitForm = document.getElementById('btn-submit-form');
 const btnCancelEdit = document.getElementById('btn-cancel-edit');
 
-// Nuevos campos del formulario
+
 const descripcionInput = document.getElementById('descripcion');
 const imagenInput = document.getElementById('imagen');
 const estadoSelect = document.getElementById('estado');
 
 
-// Función para renderizar la tabla de salones
+// render tabla de salones
 function renderSalonesTable() {
     const salonesTableBody = document.querySelector('#salones-table tbody');
     const salones = getSalones();
 
-    // Obtener valores de filtros
+    // valores filtros
     const filterNombre = document.getElementById('filter-nombre').value.toLowerCase().trim();
     const filterCapacidad = parseInt(document.getElementById('filter-capacidad').value);
     const filterPrecioMin = parseFloat(document.getElementById('filter-precio-min').value) || 0;
     const filterPrecioMax = parseFloat(document.getElementById('filter-precio-max').value) || Infinity;
     const filterEstado = document.getElementById('filter-estado').value.trim();
 
-    // Obtener servicios seleccionados en el filtro
+    // servicios seleccionados 
     const serviciosSeleccionados = Array.from(document.querySelectorAll('input[name="servicios-filter"]:checked')).map(cb => cb.value);
     salonesTableBody.innerHTML = '';
 
@@ -96,7 +95,7 @@ function renderSalonesTable() {
     });
 }
 
-// Manejar el envío del formulario (Crear/Modificar)
+// envío del form(Crear/Modificar)
 salonForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -112,9 +111,9 @@ salonForm.addEventListener('submit', (e) => {
         precioPorDia: parseFloat(formData.get('precioPorDia')),
         servicios: servicios,
         contacto: formData.get('contacto'),
-        descripcion: formData.get('descripcion'), // Nuevo
-        imagen: formData.get('imagen'),           // Nuevo
-        estado: formData.get('estado')             // Nuevo
+        descripcion: formData.get('descripcion'), 
+        imagen: formData.get('imagen'),           
+        estado: formData.get('estado')             
     };
 
     if (salonIdInput.value) {
@@ -132,7 +131,7 @@ salonForm.addEventListener('submit', (e) => {
     renderSalonesTable();
 });
 
-// Función para editar un salón
+// editar salón
 function editSalon(id) {
     const salon = getSalonById(id);
     if (salon) {
@@ -142,9 +141,9 @@ function editSalon(id) {
         document.getElementById('capacidad').value = salon.capacidad;
         document.getElementById('precioPorDia').value = salon.precioPorDia;
         document.getElementById('contacto').value = salon.contacto;
-        descripcionInput.value = salon.descripcion; // Nuevo
-        imagenInput.value = salon.imagen;           // Nuevo
-        estadoSelect.value = salon.estado;           // Nuevo
+        descripcionInput.value = salon.descripcion; 
+        imagenInput.value = salon.imagen;           
+        estadoSelect.value = salon.estado;           
 
         document.querySelectorAll('input[name="servicios"]').forEach(checkbox => {
             checkbox.checked = salon.servicios.includes(checkbox.value);
@@ -152,11 +151,11 @@ function editSalon(id) {
 
         btnSubmitForm.textContent = 'Actualizar Salón';
         btnCancelEdit.style.display = 'inline-block';
-        window.scrollTo(0, 0); // Scroll al principio para ver el formulario
+        window.scrollTo(0, 0); // Scroll  principio form
     }
 }
 
-// Función para cancelar edición
+// cancelar edición
 btnCancelEdit.addEventListener('click', () => {
     salonForm.reset();
     salonIdInput.value = '';
@@ -164,7 +163,7 @@ btnCancelEdit.addEventListener('click', () => {
     btnCancelEdit.style.display = 'none';
 });
 
-// Función para confirmar y eliminar un salón
+// confirmar y eliminar un salón
 function confirmDeleteSalon(id, nombre) {
     if (confirm(`¿Estás seguro de que quieres eliminar el salón "${nombre}"?`)) {
         deleteSalon(id);
@@ -175,7 +174,7 @@ function confirmDeleteSalon(id, nombre) {
 
 document.addEventListener('DOMContentLoaded', renderSalonesTable);
 
-// Vincular eventos de entrada
+// eventos de entrada
 document.getElementById('filter-nombre').addEventListener('input', renderSalonesTable);
 document.getElementById('filter-capacidad').addEventListener('input', renderSalonesTable);
 document.getElementById('filter-precio-min').addEventListener('input', renderSalonesTable);
@@ -185,7 +184,7 @@ document.querySelectorAll('input[name="servicios-filter"]').forEach(input => {
     input.addEventListener('change', renderSalonesTable);
 });
 
-// Botón limpiar filtros
+// limpiar filtros
 document.getElementById('btn-clear-filters').addEventListener('click', () => {
     document.getElementById('filter-nombre').value = '';
     document.getElementById('filter-capacidad').value = '';

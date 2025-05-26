@@ -1,5 +1,3 @@
-// js/salonesData.js
-
 export const LOCAL_STORAGE_SALONES_KEY = 'salonesDeEventos';
 
 const initialSalonesData = [
@@ -13,7 +11,7 @@ const initialSalonesData = [
         contacto: 'salon.bosque@email.com',
         descripcion: 'Un salón con temática de bosque encantado, perfecto para eventos mágicos y especiales. Incluye decoración y efectos de luz.',
         imagen: 'salon1.jpg', // Nombre de la imagen en la carpeta img/
-        estado: 'Disponible' // Nuevo campo
+        estado: 'Disponible' 
     },
     {
         id: '2',
@@ -24,7 +22,7 @@ const initialSalonesData = [
         servicios: ['musica', 'iluminacion'],
         contacto: 'celebracion.ideal@email.com',
         descripcion: 'Ideal para celebraciones íntimas, con un ambiente cálido y personalizable. Perfecto para pequeños encuentros.',
-        imagen: 'mundomagico.webp', // Asegúrate de que esta imagen exista
+        imagen: 'mundomagico.webp', 
         estado: 'Reservado'
     },
     {
@@ -36,7 +34,7 @@ const initialSalonesData = [
         servicios: ['pileta', 'jardines', 'catering'],
         contacto: 'quinta.serenidad@email.com',
         descripcion: 'Un amplio espacio al aire libre con jardines exuberantes y piscina, ideal para eventos al aire libre o grandes reuniones.',
-        imagen: 'espacioaventura.jpg', // Asegúrate de que esta imagen exista
+        imagen: 'espacioaventura.jpg', 
         estado: 'Disponible'
     },
     {
@@ -114,7 +112,7 @@ const initialSalonesData = [
 ];
 
 export function initializeLocalStorage() {
-    if (!localStorage.getItem(LOCAL_STORAGE_SALONES_KEY)) { // Vuelve a añadir esta línea
+    if (!localStorage.getItem(LOCAL_STORAGE_SALONES_KEY)) { 
         localStorage.setItem(LOCAL_STORAGE_SALONES_KEY, JSON.stringify(initialSalonesData));
     }
 }

@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     else if (path.includes("catalogo")) document.getElementById("nav-catalogo").classList.add("active");
   }
 
- // js/incluir.js
 import { initializeLocalStorage } from './salonesData.js';
 
 document.addEventListener('DOMContentLoaded', () => {

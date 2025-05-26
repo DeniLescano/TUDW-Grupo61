@@ -24,7 +24,7 @@ body::before {
 }
 
 header.bg-dark {
-  background-color: #222 !important; /* Un tono de negro más profundo y moderno */
+  background-color: #222 !important; /* tono  negro  */
 }
 
 header.text-white h1 {
@@ -33,14 +33,14 @@ header.text-white h1 {
 }
 
 nav.navbar.bg-light {
-  background-color: #f8f9fa !important; /* Un gris claro sutil para la navegación */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  background-color: #f8f9fa !important; /*  gris claro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra */
 }
 
 nav.navbar .navbar-brand {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #007bff; /* Tu color primario */
+  color: #007bff; /* color primario */
 }
 
 nav.navbar .navbar-toggler {
@@ -406,7 +406,7 @@ h3 {
   font-size: 1rem;
 }
 
-/* Estilos modernos para la sección de Contacto */
+/* sección de Contacto */
 .container.mt-4 section {
   background-color: #fff;
   padding: 3rem;
@@ -513,12 +513,12 @@ h3 {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  z-index: 1000;
 }
 
 .whatsapp-link {
   display: block;
-  background-color: #25D366; /* Color verde de WhatsApp */
+  background-color: #25D366; 
   border-radius: 50%;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   text-decoration: none;
