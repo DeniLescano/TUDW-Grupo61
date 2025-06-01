@@ -1,7 +1,7 @@
 <<<<<<< HEAD
-# Trabajo Práctico N°1 y 2
+# Trabajo Práctico N°1, 2 y 3
 
-Realizamos reentrega del Tp 01 sumando las consignas del tp 02
+Realizamos reentrega del Tp 01 sumando las correciones del tp2 y completando los requerimiento para el tp3
 
 ## Introducción al Desarrollo Web  
 **Tecnicatura Universitaria en Desarrollo Web**  
@@ -35,10 +35,30 @@ Tp 02
 -Adapte el sitio web a múltiples tamaños de pantalla mediante técnicas de diseño web adaptativo (RWD).
 -Integre un framework CSS (Bootstrap) para facilitar el diseño, la maquetación responsiva y el uso de componentes reutilizables.
 
+Tp 03
+REQUERIMIENTOS A CUMPLIMENTAR
+-Implementar funcionalidades de administración de la aplicación web que permitan:
+- Para salones de eventos: Listar, Crear, Visualizar, Modificar y Eliminar.
+- A tal fin se deberá:
+- Definir en un archivo JavaScript una constante que sea exportada y utilizada dentro de la
+aplicación para inicializar el LocalStorage cuando el sitio se visita por primera vez.
+- Hacer uso de la API JavaScript LocalStorage para persistir de manera permanente de los
+salones de eventos.
+- Desplegar los datos de los salones de eventos de manera tabulada utilizando tablas HTML.
+- Utilizar los elementos de formulario HTML apropiados para cada tipo de dato.
+- Modificar el catálogo de salones de forma que los datos que allí se muestran sean consumidos
+desde el LocalStorage.
+OPCIONAL
+- Implementar funcionalidades para Listar, Crear, Visualizar, Modificar y Eliminar para las siguientes
+estructuras de datos:
+- Servicios.
+- Imágenes.
+
 
 #Aclaraciones sobre el trabajo.
 
 *Inicio de sesion adminitrador*
+Credenciales
 Usuario: admin
 Contraseña: 1234
 
