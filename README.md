@@ -38,6 +38,10 @@ Tp 02
 
 #Aclaraciones sobre el trabajo.
 
+*Inicio de sesion adminitrador*
+Usuario: admin
+Contraseña: 1234
+
 *Encabezado y pie de página*
 Se decidió poner el encabezado y el pie de página por separado para una mejor actualización del texto, ya que al ser html deberiamos copiar y pegar cada vez que cambiemos el encabezado y el pie de página. 
 
