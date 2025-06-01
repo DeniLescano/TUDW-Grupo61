@@ -12,19 +12,16 @@ const imagenInput = document.getElementById('imagen');
 const estadoSelect = document.getElementById('estado');
 
 
-// render tabla de salones
 function renderSalonesTable() {
     const salonesTableBody = document.querySelector('#salones-table tbody');
     const salones = getSalones();
 
-    // valores filtros
     const filterNombre = document.getElementById('filter-nombre').value.toLowerCase().trim();
     const filterCapacidad = parseInt(document.getElementById('filter-capacidad').value);
     const filterPrecioMin = parseFloat(document.getElementById('filter-precio-min').value) || 0;
     const filterPrecioMax = parseFloat(document.getElementById('filter-precio-max').value) || Infinity;
     const filterEstado = document.getElementById('filter-estado').value.trim();
 
-    // servicios seleccionados 
     const serviciosSeleccionados = Array.from(document.querySelectorAll('input[name="servicios-filter"]:checked')).map(cb => cb.value);
     salonesTableBody.innerHTML = '';
 
@@ -95,7 +92,6 @@ function renderSalonesTable() {
     });
 }
 
-// envío del form(Crear/Modificar)
 salonForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -131,7 +127,6 @@ salonForm.addEventListener('submit', (e) => {
     renderSalonesTable();
 });
 
-// editar salón
 function editSalon(id) {
     const salon = getSalonById(id);
     if (salon) {
@@ -155,7 +150,6 @@ function editSalon(id) {
     }
 }
 
-// cancelar edición
 btnCancelEdit.addEventListener('click', () => {
     salonForm.reset();
     salonIdInput.value = '';
@@ -163,7 +157,6 @@ btnCancelEdit.addEventListener('click', () => {
     btnCancelEdit.style.display = 'none';
 });
 
-// confirmar y eliminar un salón
 function confirmDeleteSalon(id, nombre) {
     if (confirm(`¿Estás seguro de que quieres eliminar el salón "${nombre}"?`)) {
         deleteSalon(id);
@@ -174,7 +167,6 @@ function confirmDeleteSalon(id, nombre) {
 
 document.addEventListener('DOMContentLoaded', renderSalonesTable);
 
-// eventos de entrada
 document.getElementById('filter-nombre').addEventListener('input', renderSalonesTable);
 document.getElementById('filter-capacidad').addEventListener('input', renderSalonesTable);
 document.getElementById('filter-precio-min').addEventListener('input', renderSalonesTable);
@@ -184,7 +176,6 @@ document.querySelectorAll('input[name="servicios-filter"]').forEach(input => {
     input.addEventListener('change', renderSalonesTable);
 });
 
-// limpiar filtros
 document.getElementById('btn-clear-filters').addEventListener('click', () => {
     document.getElementById('filter-nombre').value = '';
     document.getElementById('filter-capacidad').value = '';

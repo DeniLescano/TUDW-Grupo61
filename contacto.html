@@ -14,7 +14,7 @@
 <main class="container mt-4">
   <section>
     <h2>Contacto</h2>
-    <form>
+    <form id="form-contacto" autocomplete="off">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre completo</label>
         <input type="text" class="form-control" id="nombre" required />
@@ -25,20 +25,39 @@
       </div>
       <div class="mb-3">
         <label for="mensaje" class="form-label">Mensaje</label>
-        <textarea class="form-control" id="mensaje" rows="4"></textarea>
+        <textarea class="form-control" id="mensaje" rows="4" required></textarea>
       </div>
       <button type="submit" class="btn btn-custom">Enviar</button>
     </form>
   </section>
-<div class="whatsapp-fixed">
-  <a href="https://wa.me/5493435174538?text=Hola quisiera consultarte por la disponibilidad de salones" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
-    <img src="img/whatsapp-icon.png" alt="WhatsApp" style="width: 40px; height: 40px;">
-  </a>
-</div>  
+  <div class="whatsapp-fixed">
+    <a href="https://wa.me/5493435174538?text=Hola quisiera consultarte por la disponibilidad de salones" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
+      <img src="img/whatsapp-icon.png" alt="WhatsApp" style="width: 40px; height: 40px;">
+    </a>
+  </div>  
 </main>
 
 <div id="footer"></div>
 
+<script type="module">
+import { guardarMensaje } from './js/mensaje.js';
+
+document.getElementById('form-contacto').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+    const fecha = new Date().toISOString().slice(0, 10);
+
+    if (nombre && correo && mensaje) {
+        guardarMensaje({ nombre, email: correo, mensaje, fecha });
+        alert('¡Mensaje enviado correctamente!');
+        this.reset();
+    } else {
+        alert('Por favor, completá todos los campos.');
+    }
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="js/incluir.js"></script>
 </body>
