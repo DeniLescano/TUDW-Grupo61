@@ -1,4 +1,3 @@
-// js/presupuesto.js
 function cargarServicios() {
   const contenedor = document.getElementById('servicios-disponibles');
   const servicios = JSON.parse(localStorage.getItem('servicios')) || [];

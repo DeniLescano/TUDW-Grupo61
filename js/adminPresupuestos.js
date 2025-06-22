@@ -2,7 +2,6 @@ const contenedorTabla = document.getElementById('tabla-presupuestos');
 
 function obtenerPresupuestos() {
   const lista = JSON.parse(localStorage.getItem('presupuestos')) || [];
-  console.log("Presupuestos obtenidos:", lista);
   return lista;
 }
 
@@ -15,9 +14,8 @@ function eliminarPresupuesto(id) {
 
 function renderPresupuestos() {
   const lista = obtenerPresupuestos();
-  console.log("Renderizando tabla de presupuestos...");
 
-  contenedorTabla.innerHTML = '';
+    contenedorTabla.innerHTML = '';
 
   if (lista.length === 0) {
     contenedorTabla.innerHTML = '<tr><td colspan="7" class="text-muted">No hay presupuestos generados.</td></tr>';
@@ -40,6 +38,5 @@ function renderPresupuestos() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("adminpresupuestos.js cargado correctamente");
   renderPresupuestos();
 });
