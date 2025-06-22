@@ -5,177 +5,218 @@ const salonesTableBody = document.querySelector('#salones-table tbody');
 const salonIdInput = document.getElementById('salon-id');
 const btnSubmitForm = document.getElementById('btn-submit-form');
 const btnCancelEdit = document.getElementById('btn-cancel-edit');
-
-
 const descripcionInput = document.getElementById('descripcion');
 const imagenInput = document.getElementById('imagen');
 const estadoSelect = document.getElementById('estado');
 
+function cargarServiciosDinamicos() {
+  const contenedor = document.getElementById('servicios-dinamicos');
+  const servicios = JSON.parse(localStorage.getItem('servicios')) || [];
+  contenedor.innerHTML = '';
+
+  servicios.forEach(serv => {
+    const col = document.createElement('div');
+    col.className = 'col-6 col-lg-4';
+
+    const div = document.createElement('div');
+    div.className = 'form-check';
+
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.className = 'form-check-input';
+    input.name = 'servicios';
+    input.id = `servicio-${serv.id}`;
+    input.value = serv.descripcion;
+
+    const label = document.createElement('label');
+    label.className = 'form-check-label';
+    label.setAttribute('for', `servicio-${serv.id}`);
+    label.textContent = serv.descripcion;
+
+    div.appendChild(input);
+    div.appendChild(label);
+    col.appendChild(div);
+    contenedor.appendChild(col);
+  });
+}
+
+function cargarFiltrosDinamicos() {
+  const contenedor = document.querySelector('#filter-servicios');
+  const servicios = JSON.parse(localStorage.getItem('servicios')) || [];
+  contenedor.innerHTML = '';
+
+  servicios.forEach(serv => {
+    const col = document.createElement('div');
+    col.className = 'col-6 col-md-2';
+
+    const div = document.createElement('div');
+    div.className = 'form-check';
+
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.className = 'form-check-input';
+    input.name = 'servicios-filter';
+    input.id = `filter-servicio-${serv.id}`;
+    input.value = serv.descripcion;
+
+    const label = document.createElement('label');
+    label.className = 'form-check-label';
+    label.setAttribute('for', `filter-servicio-${serv.id}`);
+    label.textContent = serv.descripcion;
+
+    div.appendChild(input);
+    div.appendChild(label);
+    col.appendChild(div);
+    contenedor.appendChild(col);
+  });
+
+  document.querySelectorAll('input[name="servicios-filter"]').forEach(cb => {
+    cb.addEventListener('change', renderSalonesTable);
+  });
+}
 
 function renderSalonesTable() {
-    const salonesTableBody = document.querySelector('#salones-table tbody');
-    const salones = getSalones();
+  const salones = getSalones();
+  const filterNombre = document.getElementById('filter-nombre').value.toLowerCase().trim();
+  const filterCapacidad = parseInt(document.getElementById('filter-capacidad').value);
+  const filterPrecioMin = parseFloat(document.getElementById('filter-precio-min').value) || 0;
+  const filterPrecioMax = parseFloat(document.getElementById('filter-precio-max').value) || Infinity;
+  const filterEstado = document.getElementById('filter-estado').value.trim();
 
-    const filterNombre = document.getElementById('filter-nombre').value.toLowerCase().trim();
-    const filterCapacidad = parseInt(document.getElementById('filter-capacidad').value);
-    const filterPrecioMin = parseFloat(document.getElementById('filter-precio-min').value) || 0;
-    const filterPrecioMax = parseFloat(document.getElementById('filter-precio-max').value) || Infinity;
-    const filterEstado = document.getElementById('filter-estado').value.trim();
+  const serviciosSeleccionados = Array.from(document.querySelectorAll('input[name="servicios-filter"]:checked')).map(cb => cb.value);
 
-    const serviciosSeleccionados = Array.from(document.querySelectorAll('input[name="servicios-filter"]:checked')).map(cb => cb.value);
-    salonesTableBody.innerHTML = '';
+  salonesTableBody.innerHTML = '';
 
-    if (salones.length === 0) {
-        const row = salonesTableBody.insertRow();
-        row.innerHTML = `
-            <td colspan="9" class="text-center text-muted py-3">No hay salones registrados.</td>
-        `;
-        return;
-    }
+  const salonesFiltrados = salones.filter(salon => {
+    const coincideNombre = !filterNombre || salon.nombre.toLowerCase().includes(filterNombre);
+    const coincideCapacidad = isNaN(filterCapacidad) || (salon.capacidad >= filterCapacidad - 50 && salon.capacidad <= filterCapacidad + 50);
+    const coincidePrecio = salon.precioPorDia >= filterPrecioMin && salon.precioPorDia <= filterPrecioMax;
+    const coincideEstado = !filterEstado || salon.estado === filterEstado;
+    const serviciosCoinciden = serviciosSeleccionados.every(serv => salon.servicios.includes(serv));
+    return coincideNombre && coincideCapacidad && coincidePrecio && coincideEstado &&
+      (serviciosSeleccionados.length === 0 || serviciosCoinciden);
+  });
 
-    const salonesFiltrados = salones.filter(salon => {
-        const coincideNombre = !filterNombre || salon.nombre.toLowerCase().includes(filterNombre);
-        const coincideCapacidad = isNaN(filterCapacidad) || 
-            salon.capacidad >= (filterCapacidad - 50) && 
-            salon.capacidad <= (filterCapacidad + 50);
-        const coincidePrecio = salon.precioPorDia >= filterPrecioMin && salon.precioPorDia <= filterPrecioMax;
-        const coincideEstado = !filterEstado || salon.estado === filterEstado;
+  if (salonesFiltrados.length === 0) {
+    salonesTableBody.innerHTML = '<tr><td colspan="8" class="text-muted text-center py-3">No hay salones que coincidan con los filtros.</td></tr>';
+    return;
+  }
 
-        const serviciosCoinciden = serviciosSeleccionados.every(servicio =>
-            salon.servicios.includes(servicio)
-        );
+  salonesFiltrados.forEach(salon => {
+    const row = document.createElement('tr');
 
-        return (
-            coincideNombre &&
-            coincideCapacidad &&
-            coincidePrecio &&
-            coincideEstado &&
-            (serviciosSeleccionados.length === 0 || serviciosCoinciden)
-        );
-    });
+    row.innerHTML = `
+      <td>${salon.id}</td>
+      <td>${salon.nombre}</td>
+      <td>${salon.ubicacion}</td>
+      <td>${salon.capacidad}</td>
+      <td>$${parseFloat(salon.precioPorDia).toFixed(2)}</td>
+      <td>${salon.servicios.join(', ')}</td>
+      <td>${salon.contacto}</td>
+      <td></td>`;
 
-    if (salonesFiltrados.length === 0) {
-        const row = salonesTableBody.insertRow();
-        row.innerHTML = `
-            <td colspan="9" class="text-center text-muted py-3">No hay salones que coincidan con los filtros.</td>
-        `;
-        return;
-    }
+    const acciones = row.querySelector('td:last-child');
+    const btnEdit = document.createElement('button');
+    btnEdit.className = 'btn btn-sm btn-warning me-1';
+    btnEdit.textContent = 'Editar';
+    btnEdit.addEventListener('click', () => editSalon(salon.id));
 
-    salonesFiltrados.forEach(salon => {
-        const row = salonesTableBody.insertRow();
+    const btnDelete = document.createElement('button');
+    btnDelete.className = 'btn btn-sm btn-danger';
+    btnDelete.textContent = 'Eliminar';
+    btnDelete.addEventListener('click', () => confirmDeleteSalon(salon.id, salon.nombre));
 
-        row.innerHTML = `
-            <td>${salon.id}</td>
-            <td>${salon.nombre}</td>
-            <td>${salon.ubicacion}</td>
-            <td>${salon.capacidad}</td>
-            <td>$${parseFloat(salon.precioPorDia).toFixed(2)}</td>
-            <td>${salon.servicios.join(', ')}</td>
-            <td><span class="badge ${salon.estado === 'Disponible' ? 'bg-success' : 'bg-danger'}">${salon.estado}</span></td>
-            <td>${salon.contacto}</td>
-            <td>
-                <div class="d-flex flex-wrap gap-2 justify-content-center">
-                    <button class="btn btn-warning btn-sm w-100 edit-btn">Editar</button>
-                    <button class="btn btn-danger btn-sm w-100 delete-btn">Eliminar</button>
-                </div>
-            </td>
-        `;
+    acciones.appendChild(btnEdit);
+    acciones.appendChild(btnDelete);
 
-        row.querySelector('.edit-btn').addEventListener('click', () => editSalon(salon.id));
-        row.querySelector('.delete-btn').addEventListener('click', () => confirmDeleteSalon(salon.id, salon.nombre));
-    });
-    document.querySelectorAll('input[name="servicios-filter"]').forEach(cb => {
-        if (!cb.classList.contains('form-check-input')) {
-            cb.classList.add('form-check-input');
-        }
-    });
+    salonesTableBody.appendChild(row);
+  });
 }
 
 salonForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(salonForm);
-    const servicios = [];
-    formData.getAll('servicios').forEach(service => servicios.push(service));
+  const formData = new FormData(salonForm);
+  const servicios = formData.getAll('servicios');
 
-    const newSalon = {
-        id: salonIdInput.value || Date.now().toString(),
-        nombre: formData.get('nombre'),
-        ubicacion: formData.get('ubicacion'),
-        capacidad: parseInt(formData.get('capacidad')),
-        precioPorDia: parseFloat(formData.get('precioPorDia')),
-        servicios: servicios,
-        contacto: formData.get('contacto'),
-        descripcion: formData.get('descripcion'), 
-        imagen: formData.get('imagen'),           
-        estado: formData.get('estado')             
-    };
+  const newSalon = {
+    id: salonIdInput.value || Date.now().toString(),
+    nombre: formData.get('nombre'),
+    ubicacion: formData.get('ubicacion'),
+    capacidad: parseInt(formData.get('capacidad')),
+    precioPorDia: parseFloat(formData.get('precioPorDia')),
+    servicios,
+    contacto: formData.get('contacto'),
+    descripcion: formData.get('descripcion'),
+    imagen: formData.get('imagen'),
+    estado: formData.get('estado')
+  };
 
-    if (salonIdInput.value) {
-        updateSalon(newSalon);
-        alert('Salón actualizado con éxito!');
-    } else {
-        addSalon(newSalon);
-        alert('Salón agregado con éxito!');
-    }
+  if (salonIdInput.value) {
+    updateSalon(newSalon);
+    alert('Salón actualizado con éxito!');
+  } else {
+    addSalon(newSalon);
+    alert('Salón agregado con éxito!');
+  }
 
-    salonForm.reset();
-    salonIdInput.value = '';
-    btnSubmitForm.textContent = 'Guardar Salón';
-    btnCancelEdit.style.display = 'none';
-    renderSalonesTable();
+  salonForm.reset();
+  salonIdInput.value = '';
+  btnSubmitForm.textContent = 'Guardar Salón';
+  btnCancelEdit.style.display = 'none';
+  renderSalonesTable();
 });
 
 function editSalon(id) {
-    const salon = getSalonById(id);
-    if (salon) {
-        salonIdInput.value = salon.id;
-        document.getElementById('nombre').value = salon.nombre;
-        document.getElementById('ubicacion').value = salon.ubicacion;
-        document.getElementById('capacidad').value = salon.capacidad;
-        document.getElementById('precioPorDia').value = salon.precioPorDia;
-        document.getElementById('contacto').value = salon.contacto;
-        descripcionInput.value = salon.descripcion; 
-        imagenInput.value = salon.imagen;           
-        estadoSelect.value = salon.estado;           
+  const salon = getSalonById(id);
+  if (!salon) return;
 
-        document.querySelectorAll('input[name="servicios"]').forEach(checkbox => {
-            checkbox.checked = salon.servicios.includes(checkbox.value);
-        });
+  salonIdInput.value = salon.id;
+  document.getElementById('nombre').value = salon.nombre;
+  document.getElementById('ubicacion').value = salon.ubicacion;
+  document.getElementById('capacidad').value = salon.capacidad;
+  document.getElementById('precioPorDia').value = salon.precioPorDia;
+  document.getElementById('contacto').value = salon.contacto;
+  descripcionInput.value = salon.descripcion;
+  imagenInput.value = salon.imagen;
+  estadoSelect.value = salon.estado;
 
-        btnSubmitForm.textContent = 'Actualizar Salón';
-        btnCancelEdit.style.display = 'inline-block';
-        window.scrollTo(0, 0); 
+  document.querySelectorAll('input[name="servicios"]').forEach(cb => {
+    cb.checked = salon.servicios.includes(cb.value);
+  });
+
+  btnSubmitForm.textContent = 'Actualizar Salón';
+  btnCancelEdit.style.display = 'inline-block';
+  window.scrollTo(0, 0);
 }
 
 btnCancelEdit.addEventListener('click', () => {
-    salonForm.reset();
-    salonIdInput.value = '';
-    btnSubmitForm.textContent = 'Guardar Salón';
-    btnCancelEdit.style.display = 'none';
+  salonForm.reset();
+  salonIdInput.value = '';
+  btnSubmitForm.textContent = 'Guardar Salón';
+  btnCancelEdit.style.display = 'none';
 });
 
 function confirmDeleteSalon(id, nombre) {
-    if (confirm(`¿Estás seguro de que quieres eliminar el salón "${nombre}"?`)) {
-        deleteSalon(id);
-        alert(`Salón "${nombre}" eliminado.`);
-        renderSalonesTable();
-    }
+  if (confirm(`¿Estás seguro de que quieres eliminar el salón "${nombre}"?`)) {
+    deleteSalon(id);
+    alert(`Salón "${nombre}" eliminado.`);
+    renderSalonesTable();
+  }
 }
 
-document.addEventListener('DOMContentLoaded', renderSalonesTable);
+document.addEventListener('DOMContentLoaded', () => {
+  cargarServiciosDinamicos();
+  cargarFiltrosDinamicos();
+  renderSalonesTable();
 
-document.getElementById('filter-nombre').addEventListener('input', renderSalonesTable);
-document.getElementById('filter-capacidad').addEventListener('input', renderSalonesTable);
-document.getElementById('filter-precio-min').addEventListener('input', renderSalonesTable);
-document.getElementById('filter-precio-max').addEventListener('input', renderSalonesTable);
-document.getElementById('filter-estado').addEventListener('change', renderSalonesTable);
-document.querySelectorAll('input[name="servicios-filter"]').forEach(input => {
-    input.addEventListener('change', renderSalonesTable);
-});
+  document.getElementById('filter-nombre').addEventListener('input', renderSalonesTable);
+  document.getElementById('filter-capacidad').addEventListener('input', renderSalonesTable);
+  document.getElementById('filter-precio-min').addEventListener('input', renderSalonesTable);
+  document.getElementById('filter-precio-max').addEventListener('input', renderSalonesTable);
+  document.getElementById('filter-estado').addEventListener('change', renderSalonesTable);
 
-document.getElementById('btn-clear-filters').addEventListener('click', () => {
+  document.getElementById('btn-clear-filters').addEventListener('click', () => {
     document.getElementById('filter-nombre').value = '';
     document.getElementById('filter-capacidad').value = '';
     document.getElementById('filter-precio-min').value = '';
@@ -183,4 +224,5 @@ document.getElementById('btn-clear-filters').addEventListener('click', () => {
     document.getElementById('filter-estado').value = '';
     document.querySelectorAll('input[name="servicios-filter"]').forEach(cb => cb.checked = false);
     renderSalonesTable();
-});}
+  });
+});

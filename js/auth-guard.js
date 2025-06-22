@@ -9,4 +9,4 @@ if (PAGINAS_PROTEGIDAS.includes(currentPage)) {
   }
 } else if (estaEnLogin && token) {
   window.location.href = 'admin-salones.html';
-}
+} 
