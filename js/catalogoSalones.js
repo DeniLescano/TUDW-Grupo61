@@ -23,8 +23,8 @@ function renderCatalogoSalones() {
 
         
         cardArticle.innerHTML = `
-    <img src="${salon.imagen}" class="card-img-top" alt="Imagen del Salón ${salon.nombre}">
-    <div class="card-body">
+        <img src="img/${salon.imagen}" class="card-img-top" alt="Imagen del Salón ${salon.nombre}">
+        <div class="card-body">
         <h5 class="card-title">${salon.nombre}</h5>
         <p class="card-text">${salon.descripcion}</p>
         <p><strong>Ubicación:</strong> ${salon.ubicacion}</p>
