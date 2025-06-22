@@ -1,5 +1,3 @@
-// js/auth-guard.js
-
 const PAGINAS_PROTEGIDAS = ['admin-salones.html', 'usuarios.html', 'mensajes.html'];
 const currentPage = window.location.pathname.split('/').pop();
 const estaEnLogin = currentPage === 'login.html';

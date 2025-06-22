@@ -1,5 +1,3 @@
-// js/login.js
-
 document.getElementById('login-form').addEventListener('submit', async function (e) {
   e.preventDefault();
 
@@ -20,7 +18,6 @@ document.getElementById('login-form').addEventListener('submit', async function 
 
     const data = await response.json();
 
-    // ✅ Guardamos accessToken (no data.token)
     sessionStorage.setItem('token', data.accessToken);
     sessionStorage.setItem('username', data.username);
 

@@ -146,8 +146,7 @@ function editSalon(id) {
 
         btnSubmitForm.textContent = 'Actualizar Salón';
         btnCancelEdit.style.display = 'inline-block';
-        window.scrollTo(0, 0); // Scroll  principio form
-    }
+        window.scrollTo(0, 0); 
 }
 
 btnCancelEdit.addEventListener('click', () => {
@@ -184,4 +183,4 @@ document.getElementById('btn-clear-filters').addEventListener('click', () => {
     document.getElementById('filter-estado').value = '';
     document.querySelectorAll('input[name="servicios-filter"]').forEach(cb => cb.checked = false);
     renderSalonesTable();
-});
+});}

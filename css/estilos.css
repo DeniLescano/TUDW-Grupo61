@@ -1,4 +1,4 @@
-/* ========== ESTILO GENERAL DEL SITIO ========== */
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f8f9fa;
@@ -23,7 +23,6 @@ body::before {
   z-index: -1;
 }
 
-/* ========== ENCABEZADO SUPERIOR ========== */
 header.bg-dark {
   background-color: #222 !important;
   color: white;
@@ -42,7 +41,6 @@ header.bg-dark h1 {
   color: #ffc107;
 }
 
-/* ========== MENÚ PRINCIPAL Y SESIÓN ========== */
 .navbar-custom, nav.navbar.bg-light {
   background-color: #f8f9fa !important;
   padding-top: 0.3rem;
@@ -101,7 +99,6 @@ header.bg-dark h1 {
   margin-left: 0 !important;
 }
 
-/* ========== BOTONES ========== */
 .btn-custom {
   background: linear-gradient(135deg, #007bff, #6610f2);
   color: white;
@@ -120,7 +117,6 @@ header.bg-dark h1 {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* ========== TARJETAS ========== */
 .card {
   background-color: #fff;
   border: none;
@@ -196,7 +192,6 @@ header.bg-dark h1 {
   font-size: 1rem;
 }
 
-/* ========== TÍTULOS ========== */
 h1, h2, h3 {
   font-weight: 700;
   color: #2c3e50;
@@ -220,7 +215,6 @@ h3 {
   font-size: 1.6rem;
 }
 
-/* ========== WHATSAPP FLOTANTE ========== */
 .whatsapp-fixed {
   position: fixed;
   bottom: 20px;

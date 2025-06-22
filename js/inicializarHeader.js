@@ -1,5 +1,3 @@
-// js/inicializarHeader.js
-
 export function inicializarHeader() {
   const token = sessionStorage.getItem('token');
   const estaEnLogin = window.location.pathname.includes('login.html');
@@ -34,13 +32,11 @@ export function inicializarHeader() {
       });
     }
 
-    // Ocultar "Iniciar sesión"
     if (navLoginLi) navLoginLi.classList.add('d-none');
 
   } else {
     if (menuSesionLogin) menuSesionLogin.classList.add('d-none');
     if (nombreUsuario) nombreUsuario.classList.add('d-none');
-    // Mostrar "Iniciar sesión"
     if (navLoginLi) navLoginLi.classList.remove('d-none');
   }
 }

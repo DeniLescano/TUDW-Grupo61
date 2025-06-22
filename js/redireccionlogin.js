@@ -1,4 +1,3 @@
-// js/redireccionlogin.js
 const token = sessionStorage.getItem('token');
 const estaEnLogin = window.location.pathname.includes('login.html');
 

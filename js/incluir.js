@@ -1,4 +1,3 @@
-// js/incluir.js
 import { inicializarHeader } from './inicializarHeader.js';
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(err => console.error("Error al cargar header.html:", err));
 
-  // Cargar footer
   fetch('footer.html')
     .then(response => response.text())
     .then(data => {
