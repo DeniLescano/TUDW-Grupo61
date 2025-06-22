@@ -1,14 +1,33 @@
-const USER = "admin";
-const PASS = "1234";
+// js/login.js
 
-document.getElementById('login-form').addEventListener('submit', function(e) {
+document.getElementById('login-form').addEventListener('submit', async function (e) {
   e.preventDefault();
+
   const usuario = document.getElementById('usuario').value.trim();
   const clave = document.getElementById('clave').value.trim();
-  if (usuario === USER && clave === PASS) {
-    localStorage.setItem('logueado', '1');
-    window.location.href = "admin-salones.html";
-  } else {
-    document.getElementById('login-error').style.display = 'block';
+  const errorDiv = document.getElementById('login-error');
+
+  errorDiv.style.display = 'none';
+
+  try {
+    const response = await fetch('https://dummyjson.com/auth/login',  {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: usuario, password: clave })
+    });
+
+    if (!response.ok) throw new Error('Credenciales inválidas');
+
+    const data = await response.json();
+
+    // ✅ Guardamos accessToken (no data.token)
+    sessionStorage.setItem('token', data.accessToken);
+    sessionStorage.setItem('username', data.username);
+
+    window.location.href = 'admin-salones.html';
+  } catch (err) {
+    console.error(err);
+    errorDiv.textContent = 'Usuario o contraseña incorrectos';
+    errorDiv.style.display = 'block';
   }
 });

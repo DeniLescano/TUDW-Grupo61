@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listado de Usuarios | Exclusive Eventos</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"  rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"  rel="stylesheet" />
+
+  <style>
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<div id="header-placeholder"></div>
+<script type="module" src="js/incluir.js"></script>
+
+
+<main class="container mt-4">
+  <h1 class="mb-4 text-center">Usuarios Registrados</h1>
+
+  <!-- Filtros -->
+  <div class="row mb-4 g-3 align-items-end">
+    <div class="col-md-4">
+      <label for="searchInput" class="form-label">Buscar por nombre o email:</label>
+      <input type="text" id="searchInput" class="form-control" placeholder="Ej: Emily Johnson">
+    </div>
+    <div class="col-md-3">
+      <label for="itemsPerPage" class="form-label">Mostrar por página:</label>
+      <select id="itemsPerPage" class="form-select">
+        <option value="10">10 usuarios</option>
+        <option value="15">15 usuarios</option>
+        <option value="20">20 usuarios</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Tabla de usuarios -->
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-usuarios"></tbody>
+    </table>
+  </div>
+
+  <!-- Paginación -->
+  <nav aria-label="Paginación de usuarios" class="pagination-container">
+    <ul class="pagination justify-content-center" id="pagination"></ul>
+  </nav>
+</main>
+
+<!-- Modal para ver más datos -->
+<div class="modal fade" id="userDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="exampleModalLabel">Detalles del Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <strong>ID:</strong>
+            <p id="modal-id" class="form-control bg-light"></p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Usuario:</strong>
+            <p id="modal-username" class="form-control bg-light"></p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Nombre completo:</strong>
+            <p id="modal-fullname" class="form-control bg-light"></p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Email:</strong>
+            <p id="modal-email" class="form-control bg-light"></p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Género:</strong>
+            <p id="modal-gender" class="form-control bg-light"></p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Ciudad:</strong>
+            <p id="modal-city" class="form-control bg-light"></p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Teléfono:</strong>
+            <p id="modal-phone" class="form-control bg-light"></p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Fecha de nacimiento:</strong>
+            <p id="modal-birthdate" class="form-control bg-light"></p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <strong>Grupo sanguíneo:</strong>
+            <p id="modal-bloodgroup" class="form-control bg-light"></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer dinámico -->
+<div id="footer-placeholder"></div>
+
+<!-- Scripts principales -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+
+<!-- Cargar header y footer -->
+<script type="module">
+  fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
+
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
+</script>
+
+<!-- Protección de sesión -->
+<script type="module" src="js/redireccionlogin.js"></script>
+<script type="module" src="js/auth-guard.js"></script>
+
+<!-- Lógica principal de usuarios -->
+<script type="module" src="js/usuarios.js"></script>
+
+</body>
+</html>
