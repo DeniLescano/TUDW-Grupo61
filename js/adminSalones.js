@@ -8,6 +8,7 @@ const btnCancelEdit = document.getElementById('btn-cancel-edit');
 const descripcionInput = document.getElementById('descripcion');
 const imagenInput = document.getElementById('imagen');
 const estadoSelect = document.getElementById('estado');
+const alertaEdicion = document.getElementById('alerta-edicion');
 
 function cargarServiciosDinamicos() {
   const contenedor = document.getElementById('servicios-dinamicos');
@@ -137,20 +138,25 @@ salonForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const formData = new FormData(salonForm);
-  const servicios = formData.getAll('servicios');
+  const servicios = formData.getAll('servicios') || [];
 
   const newSalon = {
     id: salonIdInput.value || Date.now().toString(),
-    nombre: formData.get('nombre'),
-    ubicacion: formData.get('ubicacion'),
-    capacidad: parseInt(formData.get('capacidad')),
-    precioPorDia: parseFloat(formData.get('precioPorDia')),
+    nombre: formData.get('nombre') || '',
+    ubicacion: formData.get('ubicacion') || '',
+    capacidad: parseInt(formData.get('capacidad')) || 0,
+    precioPorDia: parseFloat(formData.get('precioPorDia')) || 0,
     servicios,
-    contacto: formData.get('contacto'),
-    descripcion: formData.get('descripcion'),
-    imagen: formData.get('imagen'),
-    estado: formData.get('estado')
+    contacto: formData.get('contacto') || '',
+    descripcion: formData.get('descripcion') || '',
+    imagen: formData.get('imagen') || '',
+    estado: formData.get('estado') || 'Disponible'
   };
+  console.log('Valores del formulario:', newSalon);
+  if (!newSalon.nombre || !newSalon.ubicacion || !newSalon.contacto || newSalon.capacidad <= 0) {
+    alert('Faltan campos obligatorios o son incorrectos.');
+    return;
+  }
 
   if (salonIdInput.value) {
     updateSalon(newSalon);
@@ -164,12 +170,19 @@ salonForm.addEventListener('submit', (e) => {
   salonIdInput.value = '';
   btnSubmitForm.textContent = 'Guardar Salón';
   btnCancelEdit.style.display = 'none';
+  alertaEdicion.classList.add('d-none');
   renderSalonesTable();
 });
 
 function editSalon(id) {
   const salon = getSalonById(id);
   if (!salon) return;
+
+  if (document.querySelectorAll('input[name="servicios"]').length === 0) {
+    cargarServiciosDinamicos(); 
+    setTimeout(() => editSalon(id), 100); 
+    return;
+  }
 
   salonIdInput.value = salon.id;
   document.getElementById('nombre').value = salon.nombre;
@@ -185,16 +198,19 @@ function editSalon(id) {
     cb.checked = salon.servicios.includes(cb.value);
   });
 
+  alertaEdicion.classList.remove('d-none');
   btnSubmitForm.textContent = 'Actualizar Salón';
   btnCancelEdit.style.display = 'inline-block';
   window.scrollTo(0, 0);
 }
+
 
 btnCancelEdit.addEventListener('click', () => {
   salonForm.reset();
   salonIdInput.value = '';
   btnSubmitForm.textContent = 'Guardar Salón';
   btnCancelEdit.style.display = 'none';
+  alertaEdicion.classList.add('d-none');
 });
 
 function confirmDeleteSalon(id, nombre) {
