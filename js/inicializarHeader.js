@@ -5,7 +5,7 @@ export function inicializarHeader() {
   const menuSesionLogin = document.getElementById('menu-sesion-login');
   const nombreUsuario = document.getElementById('nombre-usuario');
   const btnLogout = document.getElementById('cerrar-sesion');
-  const navLoginLi = document.getElementById('nav-login-li'); // <-- nuevo
+  const navLoginLi = document.getElementById('nav-login-li');
 
   if (token && !estaEnLogin) {
     const username = sessionStorage.getItem('username') || 'Usuario';
@@ -13,16 +13,21 @@ export function inicializarHeader() {
       nombreUsuario.textContent = `Bienvenido, ${username}`;
       nombreUsuario.classList.remove('d-none');
     }
-    if (menuSesionLogin) {
-      menuSesionLogin.classList.remove('d-none');
-    }
+    if (menuSesionLogin) menuSesionLogin.classList.remove('d-none');
+
     if (btnLogout) {
       btnLogout.addEventListener('click', function (e) {
         e.preventDefault();
         sessionStorage.clear();
 
         const paginaActual = window.location.pathname.split('/').pop();
-        const paginasProtegidas = ['admin-salones.html', 'usuarios.html', 'mensajes.html'];
+        const paginasProtegidas = [
+          'admin-salones.html',
+          'usuarios.html',
+          'mensajes.html',
+          'admin-servicios.html',
+          'admin-presupuestos.html'
+        ];
 
         if (paginasProtegidas.includes(paginaActual)) {
           window.location.href = 'index.html';
@@ -33,7 +38,6 @@ export function inicializarHeader() {
     }
 
     if (navLoginLi) navLoginLi.classList.add('d-none');
-
   } else {
     if (menuSesionLogin) menuSesionLogin.classList.add('d-none');
     if (nombreUsuario) nombreUsuario.classList.add('d-none');

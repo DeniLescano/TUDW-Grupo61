@@ -1,4 +1,10 @@
-const PAGINAS_PROTEGIDAS = ['admin-salones.html', 'usuarios.html', 'mensajes.html','admin-presupuestos.html', 'admin-servicios.html'];
+const PAGINAS_PROTEGIDAS = [
+  'admin-salones.html',
+  'usuarios.html',
+  'mensajes.html',
+  'admin-servicios.html',
+  'admin-presupuestos.html'
+];
 const currentPage = window.location.pathname.split('/').pop();
 const estaEnLogin = currentPage === 'login.html';
 const token = sessionStorage.getItem('token');
@@ -9,4 +15,4 @@ if (PAGINAS_PROTEGIDAS.includes(currentPage)) {
   }
 } else if (estaEnLogin && token) {
   window.location.href = 'admin-salones.html';
-} 
+}
