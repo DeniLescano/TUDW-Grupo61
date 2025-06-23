@@ -1,40 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Catálogo de Salones | Exclusive Eventos</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
-<link href="css/estilos.css" rel="stylesheet">
-</head>
-<body>
-
+    <link href="css/estilos.css" rel="stylesheet" />
+  </head>
+  <body>
     <div id="header-placeholder"></div>
-    <script type="module" src="js/incluir.js"></script>
-
 
     <main class="container mt-4">
-        <section>
-            <h2 class="mb-4 text-center">Nuestros Salones</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4" id="salones-container">
-                <p id="no-salones-message" class="text-center w-100" style="display: none;">No hay salones disponibles en este momento.</p>
-            </div>
-        </section>
-
-        <div class="whatsapp-fixed">
-            <a href="https://wa.me/5493435174538?text=Hola quisiera consultarte por la disponibilidad de salones" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
-                <img src="img/whatsapp-icon.png" alt="WhatsApp" style="width: 40px; height: 40px;">
-            </a>
+      <section>
+        <h2 class="mb-4 text-center">Nuestros Salones</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="salones-container">
+          <p
+            id="no-salones-message"
+            class="text-center w-100"
+            style="display: none"
+          >
+            No hay salones disponibles en este momento.
+          </p>
         </div>
+      </section>
+
+      <div class="whatsapp-fixed">
+        <a
+          href="https://wa.me/5493435174538?text=Hola quisiera consultarte por la disponibilidad de salones"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="whatsapp-link"
+        >
+          <img
+            src="img/whatsapp-icon.png"
+            alt="WhatsApp"
+            style="width: 40px; height: 40px"
+          />
+        </a>
+      </div>
     </main>
 
-    <div id="footer-placeholder">
-        </div>
+    <div id="footer-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="js/incluir.js"></script>
     <script type="module" src="js/catalogoSalones.js"></script>
-</body>
+  </body>
 </html>
