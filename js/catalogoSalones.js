@@ -35,10 +35,8 @@ function renderCatalogoSalones() {
         <p><strong>Estado:</strong> ${salon.estado}</p>
     </div>
     <div class="card-footer">
-        <a href="${salon.imagen}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-custom">Ver imágenes</a>
+    <a href="img/${salon.imagen}" target="_blank" rel="noopener noreferrer" class="btn btn-custom">Ver imagen</a>
+
     </div>
         `;
         
