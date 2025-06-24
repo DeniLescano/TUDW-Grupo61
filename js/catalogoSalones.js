@@ -1,4 +1,5 @@
-import { getSalones } from './salonesData.js';
+import { getSalones, initializeLocalStorage } from './salonesData.js';
+
 
 const salonesContainer = document.getElementById('salones-container');
 const noSalonesMessage = document.getElementById('no-salones-message');
@@ -45,4 +46,7 @@ function renderCatalogoSalones() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', renderCatalogoSalones);
+document.addEventListener('DOMContentLoaded', () => {
+    initializeLocalStorage(); 
+    renderCatalogoSalones();  
+});

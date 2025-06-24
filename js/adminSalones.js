@@ -1,5 +1,8 @@
 import { getSalones, addSalon, updateSalon, deleteSalon, getSalonById } from './salonesData.js';
 
+import { initializeLocalStorage } from './salonesData.js';
+
+
 const salonForm = document.getElementById('salon-form');
 const salonesTableBody = document.querySelector('#salones-table tbody');
 const salonIdInput = document.getElementById('salon-id');
@@ -222,6 +225,7 @@ function confirmDeleteSalon(id, nombre) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initializeLocalStorage();
   cargarServiciosDinamicos();
   cargarFiltrosDinamicos();
   renderSalonesTable();
