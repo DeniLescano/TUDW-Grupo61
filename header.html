@@ -28,18 +28,26 @@
 </nav>
 
 <nav id="menu-sesion-login" class="navbar navbar-expand-lg navbar-session d-none">
-  <div class="container justify-content-center">
+  <div class="container">
+    <div class="navbar-brand fw-bold text-primary">Panel de Usuario</div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinksLogin">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navLinksLogin">
-      <ul class="navbar-nav text-center">
-        <li class="nav-item"><a class="nav-link" href="admin-salones.html"><i class="bi bi-calendar-check"></i>Panel Administración</a></li>
-        <li class="nav-item"><a class="nav-link" href="admin-servicios.html"><i class="bi bi-tools"></i>Gestionar Servicios</a></li>
-        <li class="nav-item"><a class="nav-link" href="admin-presupuestos.html"><i class="bi bi-file-earmark-text"></i>Ver Presupuestos</a></li>
-        <li class="nav-item"><a class="nav-link" href="usuarios.html"><i class="bi bi-person-lines-fill"></i>Listado Usuarios</a></li>
-        <li class="nav-item ms-3"><a class="nav-link" id="cerrar-sesion" href="#"><i class="bi bi-box-arrow-right"></i>Cerrar sesión</a></li>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+        <li class="nav-item"><a class="nav-link" href="admin-salones.html"><i class="bi bi-calendar-check"></i> Salones</a></li>
+        <li class="nav-item"><a class="nav-link" href="admin-servicios.html"><i class="bi bi-tools"></i> Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="usuarios.html"><i class="bi bi-person-lines-fill"></i> Usuarios</a></li>
+        <li class="nav-item"><a class="nav-link" href="admin-presupuestos.html"><i class="bi bi-file-earmark-text"></i> Presupuestos</a></li>
+        <li class="nav-item"><a class="nav-link" href="admin-imagenes.html"><i class="bi bi-image-fill"></i> Imágenes</a></li>
+        <li class="nav-item"><a class="nav-link" href="mensajes.html"><i class="bi bi-envelope"></i> Mensajes</a></li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-danger" id="cerrar-sesion" href="#"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+

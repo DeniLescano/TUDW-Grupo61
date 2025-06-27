@@ -17,122 +17,108 @@
 <main class="container mb-4">
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3 gap-2">
     <h1 class="mb-2 mb-md-0">Administración de Salones de Eventos</h1>
-    <a href="mensajes.html" class="btn btn-info d-flex align-items-center ms-md-auto">
-      <i class="fa-solid fa-envelope me-2"></i>Mensajes recibidos
-    </a>
   </div>
 
   <section class="form-section mb-4">
     <h2>Formulario de Salón</h2>
     <form id="salon-form" class="mb-4">
-  <div id="alerta-edicion" class="alert alert-warning d-none" role="alert">
-    Estás editando un salón. No olvides guardar los cambios o cancelar la edición.
-  </div>
+      <div id="alerta-edicion" class="alert alert-warning d-none" role="alert">
+        Estás editando un salón. No olvides guardar los cambios o cancelar la edición.
+      </div>
 
-  <input type="hidden" id="salon-id" name="id">
+      <input type="hidden" id="salon-id" name="id" />
 
-  <div class="row g-3">
-    <div class="col-12 col-md-6">
-      <label for="nombre" class="form-label">Nombre del Salón</label>
-      <input type="text" class="form-control" id="nombre" name="nombre" required>
-    </div>
-    <div class="col-12 col-md-6">
-      <label for="ubicacion" class="form-label">Ubicación</label>
-      <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
-    </div>
-    <div class="col-12 col-md-4">
-      <label for="capacidad" class="form-label">Capacidad (personas)</label>
-      <input type="number" class="form-control" id="capacidad" name="capacidad" min="1" required>
-    </div>
-    <div class="col-12 col-md-4">
-      <label for="precioPorDia" class="form-label">Precio por Día ($)</label>
-      <input type="number" class="form-control" id="precioPorDia" name="precioPorDia" min="0" step="0.01" required>
-    </div>
-    <div class="col-12 col-md-4">
-      <label for="contacto" class="form-label">Contacto (Email)</label>
-      <input type="email" class="form-control" id="contacto" name="contacto" required>
-    </div>
-    <div class="col-12">
-      <label for="descripcion" class="form-label">Descripción</label>
-      <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
-    </div>
-    <div class="col-12">
-      <label class="form-label">Imagen del Local</label>
-      <div id="imagenes-disponibles" class="d-flex flex-wrap gap-2 mb-2"></div>
-      <div class="form-text">Seleccioná una imagen disponible</div>
-      <input type="hidden" id="imagen" name="imagen">
-    </div>
-    <div class="col-12 col-md-6">
-      <label for="estado" class="form-label">Estado</label>
-      <select class="form-select" id="estado" name="estado" required>
-        <option value="Disponible">Disponible</option>
-        <option value="Reservado">Reservado</option>
-      </select>
-    </div>
-    <div class="col-12 col-md-6">
-      <label class="form-label fw-bold">Servicios</label>
-      <div id="servicios-dinamicos" class="row g-2"></div>
-    </div>
-  </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="nombre" class="form-label">Nombre del Salón</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" required />
+        </div>
+        <div class="col-md-6">
+          <label for="ubicacion" class="form-label">Ubicación</label>
+          <input type="text" class="form-control" id="ubicacion" name="ubicacion" required />
+        </div>
+        <div class="col-md-4">
+          <label for="capacidad" class="form-label">Capacidad</label>
+          <input type="number" class="form-control" id="capacidad" name="capacidad" min="1" required />
+        </div>
+        <div class="col-md-4">
+          <label for="precioPorDia" class="form-label">Precio por Día</label>
+          <input type="number" class="form-control" id="precioPorDia" name="precioPorDia" min="0" step="0.01" required />
+        </div>
+        <div class="col-md-4">
+          <label for="contacto" class="form-label">Contacto (email)</label>
+          <input type="email" class="form-control" id="contacto" name="contacto" required />
+        </div>
+        <div class="col-12">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+        </div>
 
-  <div class="d-flex flex-column flex-md-row justify-content-start gap-2 mt-3">
-    <button type="submit" class="btn btn-primary" id="btn-submit-form">
-      <i class="fa-solid fa-floppy-disk me-2"></i>Guardar Salón
-    </button>
-    <button type="button" class="btn btn-secondary" id="btn-cancel-edit" style="display: none;">
-      Cancelar Edición
-    </button>
-  </div>
-</form>
+        <!-- ✅ NUEVO: Checkboxes de imágenes -->
+        <div class="col-12">
+          <label class="form-label">Imágenes del Salón</label>
+          <div id="imagenes-disponibles" class="d-flex flex-wrap gap-2 mb-2"></div>
+          <div class="form-text">Seleccioná una o más imágenes. La primera será la principal.</div>
+        </div>
 
+        <div class="col-md-6">
+          <label for="estado" class="form-label">Estado</label>
+          <select id="estado" name="estado" class="form-select" required>
+            <option value="Disponible">Disponible</option>
+            <option value="Reservado">Reservado</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">Servicios</label>
+          <div id="servicios-dinamicos" class="row g-2"></div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column flex-md-row justify-content-start gap-2 mt-3">
+        <button type="submit" class="btn btn-primary" id="btn-submit-form">
+          <i class="bi bi-save me-2"></i>Guardar Salón
+        </button>
+        <button type="button" class="btn btn-secondary" id="btn-cancel-edit" style="display: none;">
+          Cancelar Edición
+        </button>
+      </div>
+    </form>
   </section>
 
   <section class="mb-4">
     <div class="card shadow-sm p-4" style="border-radius: 1.2rem;">
       <div class="row g-3 align-items-end">
-        <div class="col-12 col-md-2">
-          <label for="filter-nombre" class="form-label fw-semibold">
-            <i class="fa-solid fa-magnifying-glass me-1 text-primary"></i> Nombre
-          </label>
-          <input type="text" id="filter-nombre" class="form-control form-control-sm" placeholder="Buscar por nombre">
+        <div class="col-md-2">
+          <label for="filter-nombre" class="form-label">Nombre</label>
+          <input type="text" id="filter-nombre" class="form-control form-control-sm" placeholder="Buscar por nombre" />
         </div>
-        <div class="col-6 col-md-2">
-          <label for="filter-capacidad" class="form-label fw-semibold">
-            <i class="fa-solid fa-users me-1 text-primary"></i> Capacidad
-          </label>
-          <input type="number" id="filter-capacidad" class="form-control form-control-sm" placeholder="Capacidad aprox.">
+        <div class="col-md-2">
+          <label for="filter-capacidad" class="form-label">Capacidad</label>
+          <input type="number" id="filter-capacidad" class="form-control form-control-sm" placeholder="Capacidad aprox." />
         </div>
-        <div class="col-6 col-md-2">
-          <label for="filter-precio-min" class="form-label fw-semibold">
-            <i class="fa-solid fa-dollar-sign me-1 text-primary"></i> Precio mín.
-          </label>
-          <input type="number" id="filter-precio-min" class="form-control form-control-sm" placeholder="Precio mínimo">
+        <div class="col-md-2">
+          <label for="filter-precio-min" class="form-label">Precio mín.</label>
+          <input type="number" id="filter-precio-min" class="form-control form-control-sm" placeholder="$ mínimo" />
         </div>
-        <div class="col-6 col-md-2">
-          <label for="filter-precio-max" class="form-label fw-semibold">
-            <i class="fa-solid fa-dollar-sign me-1 text-primary"></i> Precio máx.
-          </label>
-          <input type="number" id="filter-precio-max" class="form-control form-control-sm" placeholder="Precio máximo">
+        <div class="col-md-2">
+          <label for="filter-precio-max" class="form-label">Precio máx.</label>
+          <input type="number" id="filter-precio-max" class="form-control form-control-sm" placeholder="$ máximo" />
         </div>
-        <div class="col-6 col-md-2">
-          <label for="filter-estado" class="form-label fw-semibold">
-            <i class="fa-solid fa-circle-check me-1 text-primary"></i> Estado
-          </label>
+        <div class="col-md-2">
+          <label for="filter-estado" class="form-label">Estado</label>
           <select id="filter-estado" class="form-select form-select-sm">
-            <option value="">Todos los estados</option>
+            <option value="">Todos</option>
             <option value="Disponible">Disponible</option>
             <option value="Reservado">Reservado</option>
           </select>
         </div>
         <div class="col-12 mt-3">
-          <label class="form-label fw-bold fs-6 mb-2">
-            <i class="fa-solid fa-sliders me-1 text-primary"></i> Servicios
-          </label>
+          <label class="form-label">Servicios</label>
           <div class="row g-2" id="filter-servicios"></div>
         </div>
         <div class="col-12 mt-3">
           <button id="btn-clear-filters" class="btn btn-primary btn-sm">
-            <i class="fa-solid fa-broom me-2"></i>Limpiar filtros
+            <i class="bi bi-broom me-2"></i>Limpiar filtros
           </button>
         </div>
       </div>
@@ -140,16 +126,17 @@
   </section>
 
   <div class="table-responsive">
-    <table id="salones-table" class="table table-striped table-bordered table-hover align-middle text-center">
+    <table id="salones-table" class="table table-bordered table-striped table-hover align-middle text-center">
       <thead class="table-dark">
         <tr>
           <th>ID</th>
           <th>Nombre</th>
           <th>Ubicación</th>
           <th>Capacidad</th>
-          <th>Precio ($)</th>
+          <th>Precio</th>
           <th>Servicios</th>
           <th>Contacto</th>
+          <th>Imagen</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -161,16 +148,13 @@
 <div id="footer-placeholder"></div>
 <script>
   fetch("footer.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("footer-placeholder").innerHTML = data;
-    });
+    .then(r => r.text())
+    .then(html => document.getElementById("footer-placeholder").innerHTML = html);
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="js/auth-guard.js"></script>
 <script type="module" src="js/adminSalones.js"></script>
 <script type="module" src="js/salonesData.js"></script>
-<script type="module" src="js/imgSalones.js"></script>
 <script type="module" src="js/logout.js"></script>
 </body>
 </html>

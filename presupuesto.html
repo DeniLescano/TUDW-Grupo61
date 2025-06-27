@@ -29,6 +29,16 @@
           <label for="tematica" class="form-label">Temática</label>
           <input type="text" id="tematica" class="form-control">
         </div>
+        <div class="col-md-6">
+          <label for="salon" class="form-label">Salón de Eventos</label>
+          <select id="salon" class="form-select" required>
+            <option value="">Seleccione un salón</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="cantidad-personas" class="form-label">Cantidad de Personas</label>
+          <input type="number" id="cantidad-personas" class="form-control" min="1" required>
+        </div>
         <div class="col-12">
           <label class="form-label">Servicios Deseados</label>
           <div id="servicios-disponibles" class="d-flex flex-wrap gap-2"></div>
@@ -44,6 +54,8 @@
       <p><strong>Nombre:</strong> <span id="res-nombre"></span></p>
       <p><strong>Fecha:</strong> <span id="res-fecha"></span></p>
       <p><strong>Temática:</strong> <span id="res-tematica"></span></p>
+      <p><strong>Salón:</strong> <span id="res-salon"></span></p>
+      <p><strong>Personas:</strong> <span id="res-cantidad"></span></p>
       <p><strong>Servicios:</strong> <span id="res-servicios"></span></p>
       <p><strong>Total:</strong> $<span id="res-total"></span></p>
     </div>

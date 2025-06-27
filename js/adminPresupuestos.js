@@ -1,42 +1,46 @@
-const contenedorTabla = document.getElementById('tabla-presupuestos');
-
-function obtenerPresupuestos() {
+export function renderPresupuestos() {
   const lista = JSON.parse(localStorage.getItem('presupuestos')) || [];
-  return lista;
-}
-
-function eliminarPresupuesto(id) {
-  if (!confirm('¿Estás seguro de eliminar este presupuesto?')) return;
-  const lista = obtenerPresupuestos().filter(p => p.id !== id);
-  localStorage.setItem('presupuestos', JSON.stringify(lista));
-  renderPresupuestos();
-}
-
-function renderPresupuestos() {
-  const lista = obtenerPresupuestos();
-
-    contenedorTabla.innerHTML = '';
+  const tabla = document.getElementById('tabla-presupuestos');
+  tabla.innerHTML = '';
 
   if (lista.length === 0) {
-    contenedorTabla.innerHTML = '<tr><td colspan="7" class="text-muted">No hay presupuestos generados.</td></tr>';
+    tabla.innerHTML = `
+      <tr>
+        <td colspan="8" class="text-muted text-center py-3">No hay presupuestos generados.</td>
+      </tr>
+    `;
     return;
   }
 
-  lista.forEach(p => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${p.id}</td>
-      <td>${p.nombre}</td>
-      <td>${p.fecha}</td>
-      <td>${p.tematica || '-'}</td>
-      <td>${p.servicios.join(', ')}</td>
-      <td>$${p.total}</td>
-      <td><button class="btn btn-sm btn-danger" onclick="eliminarPresupuesto(${p.id})">Eliminar</button></td>
+  lista.forEach(pres => {
+    const fila = document.createElement('tr');
+    fila.innerHTML = `
+      <td>${pres.id}</td>
+      <td>${pres.nombre}</td>
+      <td>${pres.fecha}</td>
+      <td>${pres.tematica || '-'}</td>
+      <td>${pres.salonTexto}</td>
+      <td>${pres.cantidadPersonas}</td>
+      <td>${pres.servicios.join(', ')}</td>
+      <td>$${pres.total}</td>
+      <td><button class="btn btn-sm btn-danger ms-2" data-id="${pres.id}">Eliminar</button>
+      </td>
     `;
-    contenedorTabla.appendChild(tr);
+    tabla.appendChild(fila);
+  });
+
+  // Agregar listeners a los botones de eliminar
+  tabla.querySelectorAll('button[data-id]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = parseInt(btn.dataset.id);
+      const confirmacion = confirm('¿Eliminar presupuesto #' + id + '?');
+      if (confirmacion) {
+        const nuevos = lista.filter(p => p.id !== id);
+        localStorage.setItem('presupuestos', JSON.stringify(nuevos));
+        renderPresupuestos();
+      }
+    });
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderPresupuestos();
-});
+document.addEventListener('DOMContentLoaded', renderPresupuestos);
